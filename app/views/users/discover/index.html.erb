@@ -1,4 +1,4 @@
-<%= button_to 'Discover Top Rated Movies' %>
+<%= button_to 'Discover Top Rated Movies', "/users/#{@user.id}/movies", method: :get %>
 <br>
 
 <%= form_with url: "/users/#{@user.id}/movies", method: :get, data: {turbo: false} do |f| %>

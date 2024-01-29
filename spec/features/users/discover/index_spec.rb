@@ -15,6 +15,5 @@ RSpec.describe 'Create New User', type: :feature do
         expect(page).to have_field('title')
         # - a Button to Search by Movie Title
         expect(page).to have_button('Search by Movie Title')
-        save_and_open_page
     end
 end
