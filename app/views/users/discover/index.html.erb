@@ -1,0 +1,10 @@
+<%= button_to 'Discover Top Rated Movies' %>
+<br>
+
+<%= form_with url: "/users/#{@user.id}/movies", method: :get, data: {turbo: false} do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, value: "Title" %>
+    <br>
+
+    <%= f.submit 'Search by Movie Title' %>
+<% end %>
