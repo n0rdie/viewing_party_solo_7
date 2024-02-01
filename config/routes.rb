@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :create] do
     resources :discover, only: [:index], controller: "users/discover"
-    resources :movies, only: [:index], controller: "users/movies"
+    resources :movies, only: [:index, :show], controller: "users/movies"
   end
 end
