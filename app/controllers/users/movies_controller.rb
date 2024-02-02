@@ -21,9 +21,12 @@ class Users::MoviesController < ApplicationController
         response = conn.get("/3/movie/#{params[:id]}")
         @movie = JSON.parse(response.body, symbolize_names: true)
 
-        #response = conn.get("/3/movie/#{params[:id]}/credits")
-        #@credits = JSON.parse(response.body, symbolize_names: true)
+        response = conn.get("/3/movie/#{params[:id]}/credits")
+        @credits = JSON.parse(response.body, symbolize_names: true)
 
-        # binding.pry
+        response = conn.get("/3/movie/#{params[:id]}/reviews")
+        @reviews = JSON.parse(response.body, symbolize_names: true)
+
+        #binding.pry
     end
 end

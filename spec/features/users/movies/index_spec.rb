@@ -5,7 +5,7 @@ RSpec.describe 'Movies Index', type: :feature do
     @user_1 = User.create!(name: 'Tommy', email: 'tommy@email.com')
   end
 
-  it '2. Movie Results Page' do
+  it '2. Movie Results Page', :vcr do
     VCR.use_cassette("themoviedb_movie_cassette_1", :allow_playback_repeats => true) do
       # When I visit the discover movies page ('/users/:id/discover'),
       visit "/users/#{@user_1.id}/discover"

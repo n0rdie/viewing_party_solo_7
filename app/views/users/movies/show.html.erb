@@ -6,4 +6,12 @@
 <% @movie[:genres].each do |genre| %>
     <h4>Genre: <%= genre[:name] %></h4>
 <% end %>
+<% for i in 0..9 do %>
+    <h4>Cast: <%= @credits[:cast][i][:name] %></h4>
+<% end %>
 <h5><%= @movie[:overview] %></h5>
+<h4>Reviews: <%= @reviews[:results].count %></h4>
+<% @reviews[:results].each do |review| %>
+  <h5><%= "Author: #{review[:author]}" %></h5>
+  <h5><%= "Information: #{review[:content]}" %></h5>
+<% end %>

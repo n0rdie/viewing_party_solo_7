@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Movies Index', type: :feature do
     before(:each) do
         @user_1 = User.create!(name: 'Tommy', email: 'tommy@email.com')
+        #When I visit a movie's detail page (`/users/:user_id/movies/:movie_id`)
+        visit "/users/#{@user_1.id}/discover"
+        click_on('Discover Top Rated Movies')
+        click_on('The Godfather Part II')
     end
 
-    it '3. Movie Details Page' do
+    it '3. Movie Details Page', :vcr do
         VCR.use_cassette("themoviedb_movie_cassette_2", :allow_playback_repeats => true) do
-            #When I visit a movie's detail page (`/users/:user_id/movies/:movie_id`)
-            visit "/users/#{@user_1.id}/discover"
-            click_on('Discover Top Rated Movies')
-            click_on('The Godfather Part II')
             # - a button to Create a Viewing Party
             expect(page).to have_button('Create a Viewing Party')
             # - a button to return to the Discover Page
@@ -28,10 +28,13 @@ RSpec.describe 'Movies Index', type: :feature do
             expect(page).to have_content('In the continuing')
             expect(page).to have_content('Hollywood and Cuba.')
             # - List the first 10 cast members (characters & actress/actors)
-            #expect(page).to have_content('Cast:', count: 10)
-            #expect(page).to have_content('Al Pacino')
+            expect(page).to have_content('Cast:', count: 10)
+            expect(page).to have_content('Al Pacino')
             # - Count of total reviews
+            expect(page).to have_content('Reviews: 4')
             # - Each review's author and information
+            expect(page).to have_content('Author: jkbbr549')
+            save_and_open_page
         end
     end
 end
